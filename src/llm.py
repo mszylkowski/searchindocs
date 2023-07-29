@@ -21,7 +21,8 @@ def build_llm():
     llm = CTransformers(model=cfg.MODEL_BIN_PATH,
                         model_type=cfg.MODEL_TYPE,
                         config={'max_new_tokens': cfg.MAX_NEW_TOKENS,
-                                'temperature': cfg.TEMPERATURE}
+                                'temperature': cfg.TEMPERATURE,
+                                'gpu_layers': cfg.GPU_LAYERS}
                         )
 
     return llm

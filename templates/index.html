@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search in Docs</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .notification:not([open]) {
+        padding-block: 6px;
+      }
+      .notification:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="section hero is-link">
+      <h1 class="title">Search in Docs</h1>
+      <form action="query">
+        <input
+          class="input is-rounded"
+          type="text"
+          placeholder="Search in docs"
+          name="q"
+        />
+      </form>
+    </section>
+    <section class="section" id="progress" style="display: none">
+      <p>Searching for documents with the content "<b id="query"></b>"</p>
+      <progress class="progress"></progress>
+    </section>
+    <section class="section" id="results"></section>
+    <script>
+      const form = document.querySelector("form");
+      const results = document.querySelector("#results");
+      const progress = document.querySelector("#progress");
+      const query = document.querySelector("#query");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const params = new URLSearchParams(new FormData(e.currentTarget));
+        query.textContent = params.get("q");
+        progress.style.setProperty("display", "block");
+        fetch("/query?" + params.toString())
+          .then((res) => res.text())
+          .then((text) => {
+            results.innerHTML = text + results.innerHTML;
+            progress.style.setProperty("display", "none");
+          });
+      });
+    </script>
+  </body>
+</html>

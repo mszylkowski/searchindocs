@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <h3 class="title is-3">Q: {{ query }}</h3>
+      <p class="content"><b>A:</b> {{ result }}</p>
+      <div class="content">
+        {% for document in source_documents %}
+        <details class="notification">
+          <summary class="control">
+            <b
+              >{{ document.metadata.source[5:] }} (page {{
+              document.metadata.page + 1 }})</b
+            >
+            <a
+              href="{{ document.metadata.source }}#page={{ document.metadata.page + 1 }}"
+              target="_blank"
+              class="button is-small is-rounded"
+              ><span>Open</span>
+              <span class="icon is-small"
+                ><i class="fas fa-arrow-up-right-from-square"></i
+              ></span>
+            </a>
+          </summary>
+          <p>{{ document.page_content }}</p>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<br />

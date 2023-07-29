@@ -10,3 +10,7 @@ MODEL_TYPE: 'llama'
 MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q8_0.bin'
 MAX_NEW_TOKENS: 256
 TEMPERATURE: 0.01
+
+# New fields from mszylkowski's configurations:
+GPU_LAYERS: 30
+DEVICE: cuda

@@ -8,3 +8,5 @@ python-box==7.0.1
 python-dotenv==1.0.0
 sentence-transformers==2.2.2
 uvicorn>=0.22.0
+colorama==0.4.6
+flask==2.3.2

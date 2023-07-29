@@ -24,6 +24,7 @@ if __name__ == "__main__":
     # Setup DBQA
     start = timeit.default_timer()
     dbqa = setup_dbqa()
+    mid = timeit.default_timer()
     response = dbqa({'query': args.input})
     end = timeit.default_timer()
 
@@ -39,4 +40,5 @@ if __name__ == "__main__":
         print(f'Page Number: {doc.metadata["page"]}\n')
         print('='* 60)
 
-    print(f"Time to retrieve response: {end - start}")
+    print(f"Time to setup response: {mid - start}")
+    print(f"Time to generate response: {end - mid}")
