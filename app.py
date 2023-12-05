@@ -8,9 +8,11 @@ dbqa = None
 
 print("Loaded")
 
+
 @app.route("/")
 def hello_world():
     return render_template("index.html")
+
 
 @app.route("/query")
 def query():
@@ -19,10 +21,14 @@ def query():
     print(query)
     if dbqa is None:
         dbqa = setup_dbqa()
-    response = dbqa({'query': query})
+    response = dbqa({"query": query})
     print(response)
     return render_template("response.html", **response)
+
 
 @app.route("/data/<path:path>")
 def static_file(path):
     return send_file(f"data/{path}")
+
+
+app.run()
