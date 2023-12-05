@@ -167,3 +167,4 @@ cython_debug/
 
 /data/**
 /vectorstore/**
+.vscode/settings.json
